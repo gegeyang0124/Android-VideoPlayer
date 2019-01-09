@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
                 .load("http://static.lexin580.com/files/ProductPicture/150448009301.jpg")
                 .into(myVideo.thumbImageView);
         Player.setJzUserAction(new MyUserActionStd());
+
+        myVideo.startVideo();
     }
 
     @Override
