@@ -21,16 +21,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         MyVideo myVideo = findViewById(R.id.myVideo);
-        myVideo.setUp("http://yyt.lexin580.com:8080/app_config/ztj08.mp4"
-                , "择天记第3季8");
+        myVideo.setUp("http://yyt.lexin580.com:8080/app_config/ztj08.mp4", "择天记第3季8",
+                "http://static.lexin580.com/files/ProductPicture/150448009301.jpg",
+                new MyUserActionStd());
         /*myVideo.setUp("http://yyt.lexin580.com:8080/app_config/ztj08.mp4"
+                , "择天记第3季8");*/
+       /* myVideo.setUp("http://yyt.lexin580.com:8080/app_config/ztj08.mp4"
                 , "择天记第3季8", MyVideo.SCREEN_WINDOW_NORMAL);*/
-        Glide.with(this)
+        /*Glide.with(this)
                 .load("http://static.lexin580.com/files/ProductPicture/150448009301.jpg")
                 .into(myVideo.thumbImageView);
-        Player.setJzUserAction(new MyUserActionStd());
+        Player.setJzUserAction(new MyUserActionStd());*/
 
-        myVideo.startVideo();
+       // myVideo.startVideo();
     }
 
     @Override

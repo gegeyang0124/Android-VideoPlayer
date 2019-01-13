@@ -1,15 +1,14 @@
 package com.zy.videoproj;
 
-
-
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.bumptech.glide.Glide;
+import com.zy.player.Player;
+import com.zy.player.PlayerAction;
 import com.zy.player.PlayerVideo;
-
-
 
 /**
  * 这里可以监听到视频播放的生命周期和播放状态
@@ -23,6 +22,14 @@ public class MyVideo extends PlayerVideo {
 
     public MyVideo(Context context, AttributeSet attrs) {
         super(context, attrs);
+    }
+
+    public void setUp(String url, String title,String imgUrl,PlayerAction jzUserEvent) {
+        super.setUp(url,title);
+        Glide.with(this)
+                .load(imgUrl)
+                .into(this.thumbImageView);
+        Player.setJzUserAction(jzUserEvent);
     }
 
     @Override
