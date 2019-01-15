@@ -190,6 +190,15 @@
         android:layout_centerVertical="true"
         android:layout_gravity="center_vertical">
 
+        <!--<ProgressBar
+            android:id="@+id/loading2"
+            android:layout_width="@dimen/start_button_w_h_normal"
+            android:layout_height="@dimen/start_button_w_h_normal"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:indeterminateDrawable="@drawable/loading"
+            android:visibility="invisible" />-->
+
         <ImageView
             android:id="@+id/start"
             android:layout_width="@dimen/start_button_w_h_normal"
