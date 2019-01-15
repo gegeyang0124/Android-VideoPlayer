@@ -125,7 +125,7 @@ public abstract class Player extends FrameLayout implements View.OnClickListener
     protected float mGestureDownBrightness;
     protected long mSeekTimePosition;
     boolean tmp_test_back = false;
-    private boolean readProgress = false;//是否读取历史进度，默认false 不读取
+    protected boolean readProgress = false;//是否读取历史进度，默认false 不读取
 
     public Player(Context context) {
         super(context);
@@ -393,48 +393,14 @@ public abstract class Player extends FrameLayout implements View.OnClickListener
         }
     }
 
-    public void setUp(String url) {
-        setUp(url,"");
-    }
-
-    public void setUp(String url,boolean readProgress){
-        setUp(url, "",readProgress);
-    }
-
-    public void setUp(String url, String title) {
-        setUp(url, title,readProgress);
-    }
-
-    public void setUp(String url, String title,@Nullable  boolean readProgress) {
-        setUp(url, title, SCREEN_WINDOW_NORMAL,readProgress);
-    }
-
-    /**
-     * 设置视频地址
-     * **/
-    public void setUp(String url, String title, int screen) {
-        setUp(url, title, screen,readProgress);
-    }
-
-    /**
-     * 设置视频地址
-     * **/
-    public void setUp(String url, String title, int screen,@Nullable  boolean readProgress) {
-        setUp(new PlayerDataSource(url, title), screen,readProgress);
-    }
+    /*public void setUp(String url, String title, int screen) {
+        setUp(new PlayerDataSource(url, title), screen);
+    }*/
 
     /**
      * 设置视频数据
      * **/
-    public void setUp(PlayerDataSource jzDataSource, int screen){
-        setUp(jzDataSource, screen,readProgress);
-    }
-
-    /**
-     * 设置视频数据
-     * **/
-    public void setUp(PlayerDataSource jzDataSource, int screen,@Nullable  boolean readProgress) {
-        this.readProgress = readProgress;
+    public void setUp(PlayerDataSource jzDataSource, int screen) {
         if (this.jzDataSource != null && jzDataSource.getCurrentUrl() != null &&
                 this.jzDataSource.containsTheUrl(jzDataSource.getCurrentUrl())) {
             return;

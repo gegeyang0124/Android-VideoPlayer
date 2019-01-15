@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -117,8 +118,56 @@ public class PlayerVideo extends Player {
         mRetryBtn.setOnClickListener(this);
     }
 
-    public void setUp(PlayerDataSource jzDataSource, int screen) {
+    public void setUp(String url) {
+        setUp(url,"");
+    }
+
+    public void setUp(String url,boolean readProgress){
+        setUp(url, "",readProgress);
+    }
+
+    public void setUp(String url, String title) {
+        setUp(url, title,readProgress);
+    }
+
+    public void setUp(String url, String title,@Nullable  boolean readProgress) {
+        setUp(url, title, SCREEN_WINDOW_NORMAL,readProgress);
+    }
+
+    /**
+     * 设置视频地址
+     * **/
+    public void setUp(String url, String title, int screen) {
+        setUp(url, title, screen,readProgress);
+    }
+
+    /**
+     * 设置视频地址
+     * **/
+    public void setUp(String url, String title, int screen,@Nullable boolean readProgress) {
+        setUp(new PlayerDataSource(url, title), screen,readProgress);
+    }
+
+    /**
+     * 设置视频数据
+     * **/
+    public void setUp(PlayerDataSource jzDataSource){
+        setUp(jzDataSource, SCREEN_WINDOW_NORMAL, readProgress);
+    }
+
+    /**
+     * 设置视频数据
+     * **/
+    public void setUp(PlayerDataSource jzDataSource, int screen){
+        setUp(jzDataSource, screen,readProgress);
+    }
+
+    /**
+     * 设置视频数据
+     * **/
+    public void setUp(PlayerDataSource jzDataSource, int screen, @Nullable boolean readProgress) {
         super.setUp(jzDataSource, screen);
+        this.readProgress = readProgress;
         titleTextView.setText(jzDataSource.title);
         if (currentScreen == SCREEN_WINDOW_FULLSCREEN) {
             fullscreenButton.setImageResource(R.drawable.shrink);
@@ -281,6 +330,11 @@ public class PlayerVideo extends Player {
                 startVideo();
                 onEvent(PlayerActionUser.ON_CLICK_START_THUMB);//开始的事件应该在播放之后，此处特殊
             } else if (currentState == CURRENT_STATE_AUTO_COMPLETE) {
+                onClickUiToggle();
+            }
+            else
+            {
+//                startDismissControlViewTimer();
                 onClickUiToggle();
             }
         } else if (i == R.id.surface_container) {
