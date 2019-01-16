@@ -19,6 +19,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginBottom="0dp"
         android:background="#000000"
         android:scaleType="fitCenter" />
 
@@ -189,15 +192,6 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_gravity="center_vertical">
-
-        <!--<ProgressBar
-            android:id="@+id/loading2"
-            android:layout_width="@dimen/start_button_w_h_normal"
-            android:layout_height="@dimen/start_button_w_h_normal"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:indeterminateDrawable="@drawable/loading"
-            android:visibility="invisible" />-->
 
         <ImageView
             android:id="@+id/start"

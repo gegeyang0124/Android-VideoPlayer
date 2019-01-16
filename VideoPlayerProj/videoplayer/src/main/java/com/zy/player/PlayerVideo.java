@@ -315,16 +315,32 @@ public class PlayerVideo extends Player {
     public void onClick(View v) {
         super.onClick(v);
         int i = v.getId();
-        if (i == R.id.thumb) {
+        if (i == R.id.start) {
+            switch (currentState){
+               /* case CURRENT_STATE_NORMAL:{
+                    updateStartImage();
+                    break;
+                }*/
+                case CURRENT_STATE_PREPARING:{
+                    if(View.VISIBLE == startButton.getVisibility()){
+                        //updateStartImage();
+                        updateStartImagePreparing();
+                    }
+                    break;
+
+                }
+            }
+        }
+        else if (i == R.id.thumb) {
             if (jzDataSource == null || jzDataSource.urlsMap.isEmpty() || jzDataSource.getCurrentUrl() == null) {
                 Toast.makeText(getContext(), getResources().getString(R.string.no_url), Toast.LENGTH_SHORT).show();
                 return;
             }
             if (currentState == CURRENT_STATE_NORMAL) {
-                if (!jzDataSource.getCurrentUrl().toString().startsWith("file") &&
+                if (!jzDataSource.getCurrentUrl().toString().startsWith("8file") &&
                         !jzDataSource.getCurrentUrl().toString().startsWith("/") &&
                         !PlayerUtils.isWifiConnected(getContext()) && !WIFI_TIP_DIALOG_SHOWED) {
-                    showWifiDialog();
+//                    showWifiDialog();
                     return;
                 }
                 startVideo();
@@ -334,7 +350,7 @@ public class PlayerVideo extends Player {
             }
             else
             {
-//                startDismissControlViewTimer();
+                //startDismissControlViewTimer();
                 onClickUiToggle();
             }
         } else if (i == R.id.surface_container) {
@@ -417,6 +433,7 @@ public class PlayerVideo extends Player {
             dialog.dismiss();
             onEvent(PlayerActionUser.ON_CLICK_START_WIFIDIALOG);
             startVideo();
+            updateStartImagePreparing();
             WIFI_TIP_DIALOG_SHOWED = true;
         });
         builder.setNegativeButton(getResources().getString(R.string.tips_not_wifi_cancel), (dialog, which) -> {
@@ -449,6 +466,8 @@ public class PlayerVideo extends Player {
             if (bottomContainer.getVisibility() == View.VISIBLE) {
             } else {
                 setSystemTimeAndBattery();
+
+                changeUiToPreparingShow();
             }
         } else if (currentState == CURRENT_STATE_PLAYING) {
             if (bottomContainer.getVisibility() == View.VISIBLE) {
@@ -461,6 +480,16 @@ public class PlayerVideo extends Player {
                 changeUiToPauseClear();
             } else {
                 changeUiToPauseShow();
+            }
+        }
+    }
+
+    public void changeUiToPreparingShow(){
+        switch (currentState){
+            case CURRENT_STATE_PREPARING:{
+                setAllControlsVisiblity(View.VISIBLE, View.VISIBLE, View.VISIBLE,
+                        View.VISIBLE, View.INVISIBLE, View.INVISIBLE, View.INVISIBLE);
+                break;
             }
         }
     }
@@ -693,10 +722,29 @@ public class PlayerVideo extends Player {
         mRetryLayout.setVisibility(retryLayout);
     }
 
+    /**
+     * 在预加载状态下更新播放/暂停按钮
+     * **/
+    public void updateStartImagePreparing() {
+        if (currentState == CURRENT_STATE_PREPARING) {
+            int res = (int) startButton.getTag();
+            if (res == R.drawable.click_pause_selector) {
+                startButton.setImageResource(R.drawable.click_play_selector);
+                startButton.setTag(R.drawable.click_play_selector);
+            } else {
+                startButton.setImageResource(R.drawable.click_pause_selector);
+                startButton.setTag(R.drawable.click_pause_selector);
+            }
+
+            replayTextView.setVisibility(GONE);
+        }
+    }
+
     public void updateStartImage() {
-        if (currentState == CURRENT_STATE_PLAYING) {
+       if (currentState == CURRENT_STATE_PLAYING) {
             startButton.setVisibility(VISIBLE);
             startButton.setImageResource(R.drawable.click_pause_selector);
+            startButton.setTag(R.drawable.click_pause_selector);
             replayTextView.setVisibility(GONE);
         } else if (currentState == CURRENT_STATE_ERROR) {
             startButton.setVisibility(INVISIBLE);
@@ -704,9 +752,11 @@ public class PlayerVideo extends Player {
         } else if (currentState == CURRENT_STATE_AUTO_COMPLETE) {
             startButton.setVisibility(VISIBLE);
             startButton.setImageResource(R.drawable.click_replay_selector);
+            startButton.setTag(R.drawable.click_replay_selector);
             replayTextView.setVisibility(VISIBLE);
-        } else {
+        } else if(currentState == CURRENT_STATE_PAUSE || currentState == CURRENT_STATE_NORMAL){
             startButton.setImageResource(R.drawable.click_play_selector);
+            startButton.setTag(R.drawable.click_play_selector);
             replayTextView.setVisibility(GONE);
         }
     }

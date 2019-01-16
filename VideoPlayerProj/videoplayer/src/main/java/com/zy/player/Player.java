@@ -49,6 +49,8 @@ public abstract class Player extends FrameLayout implements View.OnClickListener
     public static final int CURRENT_STATE_IDLE = -1;
     public static final int CURRENT_STATE_NORMAL = 0;
     public static final int CURRENT_STATE_PREPARING = 1;
+    public static final int CURRENT_STATE_PREPARING_PLAY = 8;//预加载时，播放状态
+    public static final int CURRENT_STATE_PREPARING_PAUSE = 9;//预加载时，暂停状态
     public static final int CURRENT_STATE_PREPARING_CHANGING_URL = 2;
     public static final int CURRENT_STATE_PLAYING = 3;
     public static final int CURRENT_STATE_PAUSE = 5;
@@ -97,6 +99,7 @@ public abstract class Player extends FrameLayout implements View.OnClickListener
     protected static PlayerAction JZ_USER_EVENT;
     protected Timer UPDATE_PROGRESS_TIMER;
     public int currentState = -1;
+    public int currentStatePreparing = 8;//正在加载的当前播放状态
     public int currentScreen = -1;
     public long seekToInAdvance = 0;
     public ImageView startButton;
@@ -441,6 +444,7 @@ public abstract class Player extends FrameLayout implements View.OnClickListener
                 Toast.makeText(getContext(), getResources().getString(R.string.no_url), Toast.LENGTH_SHORT).show();
                 return;
             }
+
             if (currentState == CURRENT_STATE_NORMAL) {
                 if (!jzDataSource.getCurrentUrl().toString().startsWith("file") && !
                         jzDataSource.getCurrentUrl().toString().startsWith("/") &&
@@ -462,6 +466,15 @@ public abstract class Player extends FrameLayout implements View.OnClickListener
             } else if (currentState == CURRENT_STATE_AUTO_COMPLETE) {
                 onEvent(PlayerAction.ON_CLICK_START_AUTO_COMPLETE);
                 startVideo();
+            }
+            else if(currentState == CURRENT_STATE_PREPARING){
+                if(currentStatePreparing == CURRENT_STATE_PREPARING_PLAY){
+                    currentStatePreparing = CURRENT_STATE_PREPARING_PAUSE;
+                }
+                else
+                {
+                    currentStatePreparing = CURRENT_STATE_PREPARING_PLAY;
+                }
             }
         } else if (i == R.id.fullscreen) {
             Log.i(TAG, "onClick fullscreen [" + this.hashCode() + "] ");
@@ -610,6 +623,7 @@ public abstract class Player extends FrameLayout implements View.OnClickListener
         onStatePreparing();
         PlayerMgr.setFirstFloor(this);
     }
+
 
     public void onPrepared() {
         Log.i(TAG, "onPrepared " + " [" + this.hashCode() + "] ");

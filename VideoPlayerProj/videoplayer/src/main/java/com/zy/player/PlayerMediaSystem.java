@@ -113,7 +113,8 @@ public class PlayerMediaSystem extends PlayerMediaInterface implements MediaPlay
 
     @Override
     public void onPrepared(MediaPlayer mediaPlayer) {
-        mediaPlayer.start();
+//        mediaPlayer.start();
+        start();
         if (jzDataSource.getCurrentUrl().toString().toLowerCase().contains("mp3") ||
                 jzDataSource.getCurrentUrl().toString().toLowerCase().contains("wav")) {
             PlayerMediaMgr.instance().mainThreadHandler.post(() -> {
