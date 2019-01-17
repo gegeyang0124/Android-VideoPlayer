@@ -1,6 +1,7 @@
 # VideoPlayer
 视频播放组件（具有操作控件），可全屏，可缩放，有进度条等控制组件，如各个视频软件的播放器组件 <BR/>
 下载解压后Android studio 打开VideoPlayerProj编译即可运行
+<b>本项目中的videoplayer库，即是com.zy:videoplayer:1.0.0的源码</b>
 
 ### 效果展示
 <img src='./showImg/videoplayer.gif' width='200' height='auto'>
