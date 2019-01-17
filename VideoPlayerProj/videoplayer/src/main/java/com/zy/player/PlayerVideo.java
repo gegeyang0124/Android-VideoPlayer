@@ -8,7 +8,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.os.Build;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -92,6 +94,20 @@ public class PlayerVideo extends Player {
 
     public PlayerVideo(Context context, AttributeSet attrs) {
         super(context, attrs);
+    }
+
+    public PlayerVideo(Context context, AttributeSet attrs, int defStyleAttr)
+    {
+        super(context, attrs, defStyleAttr);
+    }
+
+    /**
+     * //@RequiresApi
+     * **/
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public PlayerVideo(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes)
+    {
+        super(context, attrs, defStyleAttr, defStyleRes);
     }
 
     @Override

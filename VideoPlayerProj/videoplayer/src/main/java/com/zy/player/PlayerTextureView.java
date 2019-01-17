@@ -1,6 +1,8 @@
 package com.zy.player;
 
 import android.content.Context;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.TextureView;
@@ -22,12 +24,30 @@ public class PlayerTextureView extends TextureView {
 
     public PlayerTextureView(Context context) {
         super(context);
-        currentVideoWidth = 0;
-        currentVideoHeight = 0;
+        init();
     }
 
     public PlayerTextureView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        init();
+    }
+
+    public PlayerTextureView(Context context, AttributeSet attrs,int defStyleAttr) {
+        super(context, attrs,defStyleAttr);
+        init();
+    }
+
+    /**
+     * //@RequiresApi
+     * **/
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public PlayerTextureView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes)
+    {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        init();
+    }
+
+    private void init(){
         currentVideoWidth = 0;
         currentVideoHeight = 0;
     }

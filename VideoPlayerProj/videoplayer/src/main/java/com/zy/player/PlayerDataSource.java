@@ -3,6 +3,11 @@ package com.zy.player;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
+/**
+ * 播放器数据对象
+ * Created by 周阳
+ * On 2019/1/6
+ * **/
 public class PlayerDataSource {
 
     public static final String URL_KEY_DEFAULT = "URL_KEY_DEFAULT";

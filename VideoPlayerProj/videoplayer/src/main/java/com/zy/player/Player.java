@@ -8,8 +8,10 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.AudioManager;
+import android.os.Build;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.AttributeSet;
@@ -137,6 +139,22 @@ public abstract class Player extends FrameLayout implements View.OnClickListener
 
     public Player(Context context, AttributeSet attrs) {
         super(context, attrs);
+        init(context);
+    }
+
+    public Player(Context context, AttributeSet attrs, int defStyleAttr)
+    {
+        super(context, attrs, defStyleAttr);
+        init(context);
+    }
+
+    /**
+     * //@RequiresApi
+     * **/
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public Player(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes)
+    {
+        super(context, attrs, defStyleAttr, defStyleRes);
         init(context);
     }
 

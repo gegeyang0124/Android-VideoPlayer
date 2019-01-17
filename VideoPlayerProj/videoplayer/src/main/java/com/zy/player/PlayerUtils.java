@@ -15,8 +15,8 @@ import java.util.Formatter;
 import java.util.Locale;
 
 /**
- * Created by Nathen
- * On 2016/02/21 12:25
+ * Created by 周阳
+ * On 2019/01/06 12:25
  */
 public class PlayerUtils {
     public static final String TAG = "JZVD";
