@@ -1,11 +1,10 @@
 package com.zy.videoproj;
 
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 
-import com.bumptech.glide.Glide;
 import com.zy.player.Player;
 import com.zy.player.PlayerAction;
 import com.zy.player.PlayerActionUser;
