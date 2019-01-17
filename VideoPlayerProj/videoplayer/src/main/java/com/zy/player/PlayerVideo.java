@@ -323,9 +323,11 @@ public class PlayerVideo extends Player {
                 }*/
                 case CURRENT_STATE_PREPARING:{
                     if(View.VISIBLE == startButton.getVisibility()){
-                        //updateStartImage();
-                        updateStartImagePreparing();
+                        //updateStartImage();8
+//                        updateStartImagePreparing();
                     }
+
+                    updateStartImagePreparing();
                     break;
 
                 }
@@ -488,7 +490,7 @@ public class PlayerVideo extends Player {
         switch (currentState){
             case CURRENT_STATE_PREPARING:{
                 setAllControlsVisiblity(View.VISIBLE, View.VISIBLE, View.VISIBLE,
-                        View.VISIBLE, View.INVISIBLE, View.INVISIBLE, View.INVISIBLE);
+                        View.VISIBLE, View.VISIBLE, View.INVISIBLE, View.INVISIBLE);
                 break;
             }
         }

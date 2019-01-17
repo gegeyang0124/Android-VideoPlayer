@@ -629,6 +629,11 @@ public abstract class Player extends FrameLayout implements View.OnClickListener
         Log.i(TAG, "onPrepared " + " [" + this.hashCode() + "] ");
         onStatePrepared();
         onStatePlaying();
+
+        if(currentStatePreparing == CURRENT_STATE_PREPARING_PAUSE){
+            onStatePause();
+            PlayerMediaMgr.pause();
+        }
     }
 
     public void setState(int state) {
