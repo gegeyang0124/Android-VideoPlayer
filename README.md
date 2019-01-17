@@ -21,7 +21,7 @@
 ###### 3.1 layout布局文件代码中添加播放器ui
 ![](./showImg/layout.png)
 
-###### 2.2 Acitivity文件代码 请查看源文件（[MyVideo.java](./VideoPlayerProj/app/src/main/java/com/zy/videoproj/MyVideo.java)）
+###### 2.2 MyVideo.java继承重写播放器ui组件PlayerVideo,具体请查看源文件（[MyVideo.java](./VideoPlayerProj/app/src/main/java/com/zy/videoproj/MyVideo.java)）
 
 ###### 2.3 Acitivity文件代码 请查看源文件（[MainActivity.java](./VideoPlayerProj/app/src/main/java/com/zy/videoproj/MainActivity.java)）
 
