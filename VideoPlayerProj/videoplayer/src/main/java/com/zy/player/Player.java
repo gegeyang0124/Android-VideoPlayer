@@ -100,6 +100,7 @@ public abstract class Player extends FrameLayout implements View.OnClickListener
     protected static PlayerAction JZ_USER_EVENT;
     protected Timer UPDATE_PROGRESS_TIMER;
     public int currentState = -1;
+    public int currentStatePreparingProgress = -1;//当前进度条，预加载进度 (单位：%(百分比))
     public int currentStatePreparing = 8;//正在加载的当前播放状态
     public int currentScreen = -1;
     public long seekToInAdvance = 0;
@@ -641,7 +642,9 @@ public abstract class Player extends FrameLayout implements View.OnClickListener
         PlayerMgr.setFirstFloor(this);
     }
 
-
+    /**
+     * TODO 预加载完成回调函数
+     * **/
     public void onPrepared() {
         Log.i(TAG, "onPrepared " + " [" + this.hashCode() + "] ");
         onStatePrepared();
@@ -993,6 +996,10 @@ public abstract class Player extends FrameLayout implements View.OnClickListener
         return duration;
     }
 
+    /**
+     * 通知用户已经开始一个触摸拖动手势。客户端可能需要使用这个来禁用seekbar的滑动功能。
+     * 参数:seekBar 触摸的SeekBar
+     * **/
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
         Log.i(TAG, "bottomProgress onStartTrackingTouch [" + this.hashCode() + "] ");
@@ -1004,6 +1011,10 @@ public abstract class Player extends FrameLayout implements View.OnClickListener
         }
     }
 
+    /**
+     * 通知用户触摸手势已经结束。户端可能需要使用这个来启用seekbar的滑动功能。
+     * 参数: seekBar 触摸的SeekBar
+     * **/
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
         Log.i(TAG, "bottomProgress onStopTrackingTouch [" + this.hashCode() + "] ");
@@ -1024,12 +1035,30 @@ public abstract class Player extends FrameLayout implements View.OnClickListener
 
     public int seekToManulPosition = -1;
 
+    /**
+     * 通知进度已经被修改。客户端可以使用fromUser参数区分用户触发的改变还是编程触发的改变。
+     *
+     * 参数:
+     *
+     * seekBar 当前被修改进度的SeekBar
+     *
+     * progress 当前的进度值。此值的取值范围为0到max之间。Max为用户通过setMax(int)设置的值，默认为100
+     *
+     * fromUser 如果是用户触发的改变则返回True
+     * **/
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         if (fromUser) {
-            //设置这个progres对应的时间，给textview
-            long duration = getDuration();
-            currentTimeTextView.setText(PlayerUtils.stringForTime(progress * duration / 100));
+            if(currentState != CURRENT_STATE_PREPARING){
+                //设置这个progres对应的时间，给textview
+                long duration = getDuration();
+                currentTimeTextView.setText(PlayerUtils.stringForTime(progress * duration / 100));
+            }
+            else
+            {
+                currentStatePreparingProgress = progress;
+            }
+
         }
     }
 
@@ -1161,9 +1190,10 @@ public abstract class Player extends FrameLayout implements View.OnClickListener
         PlayerMediaMgr.instance().jzMediaInterface = mediaInterface;
     }
 
-    //TODO 是否有用
+    /**
+     * TODO 快进/快退（拖动进度条）时，视频缓冲完成回调
+     * **/
     public void onSeekComplete() {
-
     }
 
     public void showWifiDialog() {

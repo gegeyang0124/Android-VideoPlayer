@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ccc39db0-d6e3-4eb1-9982-c6098f712095" name="Default" comment="" />
+    <list default="true" id="ccc39db0-d6e3-4eb1-9982-c6098f712095" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change beforePath="$PROJECT_DIR$/VideoPlayerProj/app/build.gradle" afterPath="$PROJECT_DIR$/VideoPlayerProj/app/build.gradle" />
+      <change beforePath="$PROJECT_DIR$/VideoPlayerProj/videoplayer/build.gradle" afterPath="$PROJECT_DIR$/VideoPlayerProj/videoplayer/build.gradle" />
+      <change beforePath="$PROJECT_DIR$/VideoPlayerProj/videoplayer/src/main/java/com/zy/player/Player.java" afterPath="$PROJECT_DIR$/VideoPlayerProj/videoplayer/src/main/java/com/zy/player/Player.java" />
+      <change beforePath="$PROJECT_DIR$/VideoPlayerProj/videoplayer/src/main/java/com/zy/player/PlayerMediaSystem.java" afterPath="$PROJECT_DIR$/VideoPlayerProj/videoplayer/src/main/java/com/zy/player/PlayerMediaSystem.java" />
+      <change beforePath="$PROJECT_DIR$/VideoPlayerProj/videoplayer/src/main/java/com/zy/player/PlayerVideo.java" afterPath="$PROJECT_DIR$/VideoPlayerProj/videoplayer/src/main/java/com/zy/player/PlayerVideo.java" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -19,7 +26,7 @@
           <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
             <state split_layout="SPLIT">
               <first_editor relative-caret-position="456">
-                <caret line="24" column="7" lean-forward="true" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
+                <caret line="24" column="7" lean-forward="false" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
                 <folding />
               </first_editor>
               <second_editor>
@@ -75,7 +82,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="186" />
     <option name="width" value="1143" />
     <option name="height" value="954" />
@@ -151,15 +158,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1547711242282</updated>
-      <workItem from="1547711243796" duration="3093000" />
+      <workItem from="1547711243796" duration="3677000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3093000" />
+    <option name="totallyTimeSpent" value="3677000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="186" y="0" width="1143" height="954" extended-state="0" />
+    <frame x="186" y="0" width="1143" height="954" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2786158" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -212,7 +219,7 @@
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="456">
-            <caret line="24" column="7" lean-forward="true" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
+            <caret line="24" column="7" lean-forward="false" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
             <folding />
           </first_editor>
           <second_editor>

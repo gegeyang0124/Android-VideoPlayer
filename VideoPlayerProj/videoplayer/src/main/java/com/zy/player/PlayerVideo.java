@@ -232,6 +232,28 @@ public class PlayerVideo extends Player {
         lp.width = size;
     }
 
+    /**
+     * TODO 预加载完成回调函数
+     * **/
+    @Override
+    public void onPrepared() {
+        super.onPrepared();
+
+        if(currentStatePreparingProgress != -1){
+            loadingProgressBar.setVisibility(View.VISIBLE);
+            PlayerMediaMgr.seekTo(currentStatePreparingProgress * getDuration() / 100);
+        }
+    }
+
+    /**
+     * TODO 快进/快退（拖动进度条）时，视频缓冲完成回调
+     * **/
+//    @Override
+    public void onSeekComplete(){
+        super.onSeekComplete();
+        loadingProgressBar.setVisibility(View.INVISIBLE);
+    }
+
     @Override
     public int getLayoutId() {
         return R.layout.layout_std;
@@ -473,6 +495,7 @@ public class PlayerVideo extends Player {
     public void onStopTrackingTouch(SeekBar seekBar) {
         super.onStopTrackingTouch(seekBar);
         startDismissControlViewTimer();
+        loadingProgressBar.setVisibility(View.VISIBLE);
     }
 
     public void onClickUiToggle() {

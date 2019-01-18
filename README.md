@@ -8,7 +8,7 @@
 <!--![](./showImg/videoplayer.gif)-->
 
 ### 使用
-##### 1.在项目依赖中添加 compile 'com.zy:videoplayer:1.0.0'
+##### 1.在项目依赖中添加 compile 'com.zy:videoplayer:1.0.1'
 <img src='./showImg/compile.png' width='400' height='auto'>
 <!--![](./showImg/compile.png)-->
 

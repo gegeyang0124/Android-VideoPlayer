@@ -179,6 +179,10 @@ public class PlayerMediaSystem extends PlayerMediaInterface implements MediaPlay
         return false;
     }
 
+    /**
+     * 视频播放时，旋转rotate屏幕 会调用surfaceChanged函数，里面调用seekTo,seekTo又调用MediaPlayer.seekto
+     * 则最终会调用MediaPlayer的setOnInfoListener的OnInfo函数。
+     * **/
     @Override
     public void onVideoSizeChanged(MediaPlayer mediaPlayer, int width, int height) {
         PlayerMediaMgr.instance().currentVideoWidth = width;
